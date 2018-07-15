@@ -32,8 +32,6 @@ export default {}
 
     @media screen and (max-width: 768px){
         background-image: url('../../../assets/pokemon-mobile.jpg');
-        background-repeat: no-repeat;
-        background-position: center;
     }
 }
 </style>
