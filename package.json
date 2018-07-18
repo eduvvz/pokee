@@ -12,7 +12,8 @@
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
     "file-loader": "^1.1.11",
-    "vue": "^2.5.11"
+    "vue": "^2.5.11",
+    "vue-router": "^3.0.1"
   },
   "browserslist": [
     "> 1%",

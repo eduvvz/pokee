@@ -10,7 +10,9 @@
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav class="ml-auto">
       <b-navbar-nav>
-        <b-nav-item href="#" class="link">Home</b-nav-item>
+        <router-link to="/listPokemon">
+          <b-nav-item href="#" class="link">Home</b-nav-item>
+        </router-link>
         <b-nav-item href="#" class="link">Buscar Pokémon</b-nav-item>
         <b-nav-item href="#" class="link">Comparar</b-nav-item>
       </b-navbar-nav>   

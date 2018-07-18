@@ -2,6 +2,8 @@
     <div>
       <app-header/>
       <app-menu/>
+
+      <router-view></router-view>
     </div>
 </template>
 
