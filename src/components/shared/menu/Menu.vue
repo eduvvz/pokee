@@ -9,12 +9,10 @@
 
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav class="ml-auto">
-      <b-navbar-nav>
-        <router-link to="/listPokemon">
-          <b-nav-item href="#" class="link">Home</b-nav-item>
+      <b-navbar-nav v-for="(route, i) in routes" :key="i">
+        <router-link :to="route.path">
+          {{ route.title }}
         </router-link>
-        <b-nav-item href="#" class="link">Buscar Pokémon</b-nav-item>
-        <b-nav-item href="#" class="link">Comparar</b-nav-item>
       </b-navbar-nav>   
     </b-navbar-nav>
   </b-collapse>
@@ -25,13 +23,16 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
-export default {};
+export default {
+  props: {
+    routes: {
+      type: Array,
+      required: true
+    }    
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
-.link {
-  color: black;
-}
 
 </style>

@@ -3,7 +3,7 @@ const listPokemon = () => System.import('./components/listPokemon/listPokemon.vu
 const comparePokemon = () => System.import('./components/comparePokemon/ComparePokemon.vue');
 
 export const routes = [
-    { path: '', name: 'home', component: listPokemon },
-    { path: '/comparar', name: 'comparar', component: comparePokemon },
-    { path: '/buscar', name: 'buscar', component: sharedPokemon }
+    { path: '/', name: 'home', component: listPokemon, title: 'Home' },
+    { path: '/comparar', name: 'compare', component: comparePokemon, title: 'Comparar' },
+    { path: '/buscar', name: 'shared', component: sharedPokemon, title: 'Buscar Pokémon' }
 ];
