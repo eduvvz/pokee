@@ -8,6 +8,10 @@
                     <h3>Pokémons</h3>
                 </b-col>
             </b-row>
+            <br>
+            <b-row v-show="msg">
+                {{ msg }}
+            </b-row>
         </b-container>
     </div>
 </template>
@@ -19,7 +23,7 @@ export default {
   data() {
     return {
       pokemons: null,
-      msg: null
+      msg: ''
     };
   },
 
@@ -28,7 +32,11 @@ export default {
 
     this.service
         .listar()
-        .then(pokemons => this.pokemons = pokemons, er => msg = er);
+        .then(pokemons => this.pokemons, er => {
+            this.msg = er.message;
+            console.log(msg);
+
+        });
   }
 };
 </script>
