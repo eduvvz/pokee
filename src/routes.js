@@ -1,5 +1,5 @@
-const sharedPokemon = () => System.import('./components/sharedPokemon/sharedPokemon.vue');
-const listPokemon = () => System.import('./components/listPokemon/listPokemon.vue');
+const sharedPokemon = () => System.import('./components/searchPokemon/SearchPokemon.vue');
+const listPokemon = () => System.import('./components/listPokemon/ListPokemon.vue');
 const comparePokemon = () => System.import('./components/comparePokemon/ComparePokemon.vue');
 
 export const routes = [

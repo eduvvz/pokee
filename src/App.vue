@@ -11,6 +11,7 @@
 import { routes } from "./routes";
 import Menu from "./components/shared/menu/Menu.vue";
 import Header from "./components/shared/header/Header.vue";
+import './assets/css/fonts.scss';
 
 export default {
   components: {
@@ -32,6 +33,10 @@ body {
   margin: 0px;
   font-family: Arial, Helvetica, sans-serif;
   color: black;
+
+  h1,h2,h3,h4 {
+    font-family: 'pokemon';
+  }
 }
 
 .center-inside {

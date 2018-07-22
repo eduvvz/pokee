@@ -20,7 +20,6 @@ export default {}
     background-repeat: no-repeat;
     background-position-x: center;
     height: 150px;
-    font-family: 'pokemon';
     background-color: black;
 
     h1 {
