@@ -12,6 +12,11 @@
       <b-row v-show="msg">
         {{ msg }}
       </b-row>
+      <b-row class="loader center-inside">
+        <div v-show="isLoading">
+          <img src="../../assets/loader.gif" alt="pikachu">
+        </div>
+      </b-row>
       <b-row>
         <b-col class="center-inside">
           <card :name="pokemon ? pokemon.name : ''"
@@ -50,12 +55,15 @@ export default {
     return {
       pokemons: [],
       msg: "",
-      pokemon: null
+      pokemon: null,
+      isLoading: false
     };
   },
 
   methods: {
     sendToCard(name) {
+      this.showLoading();
+      this.pokemon = null;
       this.service.listForName(name).then(pokemon => {
         //Setando ataque e defesa do pokémon para o card
         pokemon.stats.forEach(
@@ -68,14 +76,25 @@ export default {
         });
         console.log(pokemon.types);
         this.pokemon = pokemon;
-      });
-    }
+      },
+      er => {
+        this.msg = er.message;
+      }).finally(() => this.hideLoading());
+    },
+
+    showLoading() {
+      this.isLoading = true;
+    },
+
+    hideLoading() {
+      this.isLoading = false;
+    },
   },
 
   created() {
     this.service = new PokemonService(this.$resource);
 
-    this.service.list(40).then(
+    this.service.list(30).then(
       pokemons => {
         this.pokemons = pokemons.results;
 
@@ -95,6 +114,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loader {
+  height: 100px;
+}
 .item-list {
   margin: 7px;
 
