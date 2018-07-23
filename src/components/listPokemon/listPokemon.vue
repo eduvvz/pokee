@@ -36,6 +36,13 @@
         </b-button>
       </b-col>
       </b-row>
+      <br>
+      <b-row>
+        <b-col cols="12" class="center-inside">
+          <button @click="pageGeneretion(-1)">Voltar</button>
+          <button @click="pageGeneretion(1)">Proximo</button>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -56,30 +63,65 @@ export default {
       pokemons: [],
       msg: "",
       pokemon: null,
-      isLoading: false
+      isLoading: false,
+      currentPage: 1
     };
   },
 
   methods: {
+    pageGeneretion(picker) {
+      if(picker > 0) {
+        this.currentPage++;
+      } else {
+        this.currentPage--;
+      }
+      this.showLoading();
+      this.service
+        .list(30, this.currentPage * 30 - 30)
+        .then(
+          pokemons => {
+            console.log(pokemons);
+            this.pokemons = pokemons.results;
+            this.renderNumbersPokeball();
+          },
+          er => {
+            this.msg = er.message;
+          }
+        )
+        .finally(() => this.hideLoading());
+    },
     sendToCard(name) {
       this.showLoading();
       this.pokemon = null;
-      this.service.listForName(name).then(pokemon => {
-        //Setando ataque e defesa do pokémon para o card
-        pokemon.stats.forEach(
-        (stat) => {
-          if (stat.stat.name == 'attack') {
-            pokemon.stats.attack = stat.base_stat;
-          } else if(stat.stat.name == 'defense'){
-            pokemon.stats.defense = stat.base_stat;
+      this.service
+        .listForName(name)
+        .then(
+          pokemon => {
+            //Setando ataque e defesa do pokémon para o card
+            pokemon.stats.forEach(stat => {
+              if (stat.stat.name == "attack") {
+                pokemon.stats.attack = stat.base_stat;
+              } else if (stat.stat.name == "defense") {
+                pokemon.stats.defense = stat.base_stat;
+              }
+            });
+            console.log(pokemon.types);
+            this.pokemon = pokemon;
+          },
+          er => {
+            this.msg = er.message;
           }
-        });
-        console.log(pokemon.types);
-        this.pokemon = pokemon;
-      },
-      er => {
-        this.msg = er.message;
-      }).finally(() => this.hideLoading());
+        )
+        .finally(() => this.hideLoading());
+    },
+
+    renderNumbersPokeball() {
+      // Renderizando classe(CSS) responsável pelas pokebolas como icon
+      this.pokemons.forEach(poke => {
+        poke.class = (
+          "background-" + Math.floor(Math.random() * 7 + 1)
+        ).toString();
+      });
     },
 
     showLoading() {
@@ -88,21 +130,15 @@ export default {
 
     hideLoading() {
       this.isLoading = false;
-    },
+    }
   },
-
   created() {
     this.service = new PokemonService(this.$resource);
 
     this.service.list(30).then(
       pokemons => {
         this.pokemons = pokemons.results;
-
-        // Renderizando classe(CSS) responsável pelas pokebolas como icon
-        this.pokemons.forEach(poke => {
-          poke.class = ("background-"+Math.floor(Math.random() * 7 + 1)).toString();
-        });
-
+        this.renderNumbersPokeball();
         console.log(this.pokemons);
       },
       er => {
@@ -122,8 +158,11 @@ export default {
 
   span {
     font-family: "louis";
-    margin-left: 7px;
     margin-right: 7px;
+
+    @media screen and (max-width: 768px) {
+      margin-right: 1px;
+    }
   }
 
   .img {

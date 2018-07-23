@@ -1,12 +1,12 @@
 export default class PokemonService {
 
     constructor (resource) {
-        this._resource = resource('https://pokeapi.co/api/v2/pokemon{/name}/?limit={limit}');
+        this._resource = resource('https://pokeapi.co/api/v2/pokemon{/name}/?limit={limit}&offset={offset}');
     }
 
-    list(limitParam) {
+    list(limitParam, offsetParam) {
         return this._resource
-         .get({limit: limitParam})
+         .get({limit: limitParam, offset: offsetParam ? offsetParam : 0})
          .then(
             res => res.json(), 
             er => {
