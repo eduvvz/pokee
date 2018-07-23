@@ -1,6 +1,11 @@
 $font-url : '../fonts/';
 
 @font-face {
-    font-family: "pokemon";
-    src: url($font-url+"Pokemon.ttf");
-  }
+  font-family: "pokemon";
+  src: url($font-url+"Pokemon.ttf");
+}
+
+@font-face {
+  font-family: "louis";
+  src: url($font-url+"Louis George Cafe.ttf");
+}

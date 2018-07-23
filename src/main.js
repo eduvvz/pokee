@@ -6,8 +6,6 @@ import { routes } from './routes'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
-Vue.http.options.root = 'https://pokeapi.co';
-
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
