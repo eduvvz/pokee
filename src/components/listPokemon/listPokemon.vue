@@ -8,7 +8,6 @@
           <h3>Pokémons</h3>
         </b-col>
       </b-row>
-      <br>
       <b-row v-show="msg">
         {{ msg }}
       </b-row>
@@ -27,7 +26,7 @@
           </card>
       </b-col>
       <b-col md="12" lg="8">
-        <b-button class="item-list" @click="sendToCard(poke.name)" 
+        <b-button class="button-list" @click="sendToCard(poke.name)" 
         v-for="(poke, i) in pokemons" :key="i" size="lg">
           <b-row>
             <span class="img" v-bind:class="poke.class"></span>
@@ -39,8 +38,8 @@
       <br>
       <b-row>
         <b-col cols="12" class="center-inside">
-          <button @click="pageGeneretion(-1)">Voltar</button>
-          <button @click="pageGeneretion(1)">Proximo</button>
+          <b-button class="button-list" @click="pageGeneretion(-1)">Voltar</b-button>
+          <b-button class="button-list" @click="pageGeneretion(1)">Proximo</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -73,16 +72,20 @@ export default {
       if(picker > 0) {
         this.currentPage++;
       } else {
-        this.currentPage--;
+        if(this.currentPage >= 1){
+          this.currentPage--;
+        }
       }
+      console.log('passou aqui');
       this.showLoading();
       this.service
-        .list(30, this.currentPage * 30 - 30)
+        .list(25, this.currentPage * 25 - 25)
         .then(
           pokemons => {
             console.log(pokemons);
             this.pokemons = pokemons.results;
             this.renderNumbersPokeball();
+            this.msg = '';
           },
           er => {
             this.msg = er.message;
@@ -107,6 +110,7 @@ export default {
             });
             console.log(pokemon.types);
             this.pokemon = pokemon;
+            this.msg = '';
           },
           er => {
             this.msg = er.message;
@@ -135,7 +139,7 @@ export default {
   created() {
     this.service = new PokemonService(this.$resource);
 
-    this.service.list(30).then(
+    this.service.list(25).then(
       pokemons => {
         this.pokemons = pokemons.results;
         this.renderNumbersPokeball();
@@ -153,7 +157,7 @@ export default {
 .loader {
   height: 100px;
 }
-.item-list {
+.button-list {
   margin: 7px;
 
   span {
