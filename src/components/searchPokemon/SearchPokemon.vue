@@ -1,7 +1,6 @@
 <template>
     <div>
         <b-container>
-            <br>
             <hr>
             <b-row>
                 <b-col>
@@ -16,10 +15,20 @@
             <b-row v-show="msg">
                 {{ msg }}
             </b-row>
-            <b-row>
-                <b-col cols="12" >
-                    
+            <b-row class="center-inside">
+                <b-col cols="6" >
+                    <b-form-input size="md" v-model="name" 
+                    type="text" placeholder="Nome do pokemon ...">
+                    </b-form-input>
                 </b-col>
+                <b-col cols="2">
+                    <b-button size="md" variant="danger">
+                        <img src="../../assets/search.png" alt="search">
+                    </b-button>
+                </b-col>
+            </b-row>
+            <b-row>
+                
             </b-row>
         </b-container>
     </div>
@@ -31,7 +40,8 @@ export default {
     return {
         msg: '',
         pokemon: null,
-        isLoading: false
+        isLoading: false,
+        name: ''
     };
   },
 
@@ -50,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 
 .loader {
-  height: 100px;
+  height: 50px;
 }
 
 </style>

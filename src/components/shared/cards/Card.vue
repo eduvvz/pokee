@@ -72,7 +72,7 @@ export default {
 
 .card-img {
   width: 100%;
-  height: auto;
+  min-height: 100px;
 }
 
 .card-body {

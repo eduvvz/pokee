@@ -1,7 +1,6 @@
 <template>
   <div>
     <b-container>
-      <br>
       <hr>
       <b-row>
         <b-col>
@@ -76,13 +75,11 @@ export default {
           this.currentPage--;
         }
       }
-      console.log('passou aqui');
       this.showLoading();
       this.service
         .list(25, this.currentPage * 25 - 25)
         .then(
           pokemons => {
-            console.log(pokemons);
             this.pokemons = pokemons.results;
             this.renderNumbersPokeball();
             this.msg = '';
@@ -108,7 +105,6 @@ export default {
                 pokemon.stats.defense = stat.base_stat;
               }
             });
-            console.log(pokemon.types);
             this.pokemon = pokemon;
             this.msg = '';
           },
@@ -143,7 +139,6 @@ export default {
       pokemons => {
         this.pokemons = pokemons.results;
         this.renderNumbersPokeball();
-        console.log(this.pokemons);
       },
       er => {
         this.msg = er.message;
@@ -155,7 +150,7 @@ export default {
 
 <style lang="scss" scoped>
 .loader {
-  height: 100px;
+  height: 50px;
 }
 .button-list {
   margin: 7px;
