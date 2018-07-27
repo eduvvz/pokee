@@ -39,8 +39,15 @@ body {
   }
 }
 
-.center-inside {
+.center-ver-hor {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-ver {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

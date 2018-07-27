@@ -1,9 +1,9 @@
 <template>
     <div class="card" id="card">
-        <div class="card-header center-inside">
+        <div class="card-header center-ver-hor">
             <span>{{name}}</span>
         </div>
-        <div class="card-img center-inside">
+        <div class="card-img center-ver-hor">
             <img v-bind:src="urlImage" v-bind:alt="name">
         </div>
         <div class="card-body">
@@ -20,9 +20,6 @@
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
 export default {
 
   props: {

@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid class="header center-inside">
+    <b-container fluid class="header center-ver-hor">
         <b-row>
             <h1>Poké<span>Shop</span></h1>
         </b-row>

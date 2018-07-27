@@ -10,13 +10,13 @@
       <b-row v-show="msg">
         {{ msg }}
       </b-row>
-      <b-row class="loader center-inside">
+      <b-row class="loader center-ver-hor">
         <div v-show="isLoading">
           <img src="../../assets/loader.gif" alt="pikachu">
         </div>
       </b-row>
       <b-row>
-        <b-col class="center-inside">
+        <b-col class="center-ver-hor">
           <card :name="pokemon ? pokemon.name : ''"
             :urlImage="pokemon ? pokemon.sprites.front_default : ''"
             :attack="pokemon ? pokemon.stats.attack : 0" 
@@ -36,7 +36,7 @@
       </b-row>
       <br>
       <b-row>
-        <b-col cols="12" class="center-inside">
+        <b-col cols="12" class="center-ver-hor">
           <b-button class="button-list" @click="pageGeneretion(-1)">Voltar</b-button>
           <b-button class="button-list" @click="pageGeneretion(1)">Proximo</b-button>
         </b-col>
@@ -48,8 +48,6 @@
 <script>
 import PokemonService from "../../service/pokemon/PokemonService";
 import Card from "../shared/cards/Card";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
   components: {
