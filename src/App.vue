@@ -28,7 +28,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 body {
   margin: 0px;
   font-family: Arial, Helvetica, sans-serif;

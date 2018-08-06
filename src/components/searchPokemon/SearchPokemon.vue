@@ -26,10 +26,12 @@
             <b-row v-show="msg">
                 {{ msg }}
             </b-row>
-            <b-row>
-                <panel></panel>
+            <b-row v-show="pokemon">
+                <panel :pokemon="pokemon">
+                </panel>
             </b-row>
         </b-container>
+        <br>
     </div>
 </template>
 
@@ -57,6 +59,7 @@ export default {
         alert("Digite um nome");
       } else {
         this.showLoading();
+        this.msg = "";
         this.pokemon = null;
         this.service
           .listForName(this.name)

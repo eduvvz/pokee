@@ -4,6 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 import VueResource from 'vue-resource'
+require('../node_modules/animate.css/animate.min.css');
 
 Vue.use(VueResource);
 Vue.use(BootstrapVue);
