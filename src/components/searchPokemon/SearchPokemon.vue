@@ -1,38 +1,38 @@
 <template>
-    <div>
-        <b-container>
-            <hr>
-            <b-row>
-                <b-col sm='12' md="2" class="page-header center-ver-hor">
-                    <h3>Buscar Pokémon</h3>
-                </b-col>
-                <b-col cols="10" md="8" class="page-header center-ver-hor">
-                    <b-form-input size="lg" v-model="name" 
-                    type="text" placeholder="Nome do pokemon ...">
-                    </b-form-input>
-                </b-col>
-                <b-col cols="2" class="page-header center-ver">
-                    <b-button size="lg" variant="danger"
-                    @click="searchPokemon()">
-                        <img src="../../assets/search.png" alt="search">
-                    </b-button>
-                </b-col>
-            </b-row>
-            <b-row class="loader center-ver-hor">
-                <div v-show="isLoading">
-                    <img src="../../assets/loader.gif" alt="pikachu">
-                </div>
-            </b-row>
-            <b-row v-show="msg">
-                {{ msg }}
-            </b-row>
-            <b-row v-show="pokemon">
-                <panel :pokemon="pokemon">
+<div>
+    <b-container>
+        <hr>
+        <b-row>
+            <b-col sm='12' md="2" class="page-header center-ver-hor">
+                <h3>Buscar Pokémon</h3>
+            </b-col>
+            <b-col cols="10" md="8" class="page-header center-ver-hor">
+                <b-form-input size="lg" v-model="name" type="text" placeholder="Nome do pokemon ...">
+                </b-form-input>
+            </b-col>
+            <b-col cols="2" class="page-header center-ver">
+                <b-button size="lg" variant="danger" @click="searchPokemon()">
+                    <img src="../../assets/search.png" alt="search">
+                </b-button>
+            </b-col>
+        </b-row>
+        <b-row class="loader center-ver-hor">
+            <div v-show="isLoading">
+                <img src="../../assets/loader.gif" alt="pikachu">
+            </div>
+        </b-row>
+        <b-row v-show="msg">
+            {{ msg }}
+        </b-row>
+        <transition enter-active-class="fadeInLeft">
+            <b-row v-if="pokemon" id="rowCard">
+                <panel :pokemon="pokemon ? pokemon : null">
                 </panel>
             </b-row>
-        </b-container>
-        <br>
-    </div>
+        </transition>
+    </b-container>
+    <br>
+</div>
 </template>
 
 <script>
@@ -40,9 +40,9 @@ import PokemonService from "../../service/pokemon/PokemonService";
 import Panel from "../shared/panel/Panel";
 
 export default {
-    components:{
-        panel: Panel
-    },
+  components: {
+    panel: Panel
+  },
 
   data() {
     return {
@@ -58,9 +58,9 @@ export default {
       if (!this.name) {
         alert("Digite um nome");
       } else {
+        this.pokemon = null;
         this.showLoading();
         this.msg = "";
-        this.pokemon = null;
         this.service
           .listForName(this.name)
           .then(
@@ -99,5 +99,3 @@ export default {
   height: 50px;
 }
 </style>
-
-

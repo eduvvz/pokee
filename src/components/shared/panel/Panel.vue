@@ -1,6 +1,6 @@
 <template>
-<transition>
-    <b-container class="panel">
+<transition enter-active-class="fadeInLeft" leave-active-class="fadeInRight">
+    <b-container class="panel animated">
         <b-row class="panel-title center-ver-hor">
             <h1>{{ pokemon.name }}</h1>
         </b-row>
@@ -33,8 +33,7 @@
 export default {
     props: {
         pokemon: {
-            type: String,
-            required: true
+            type: Object,
         }
     }
 };
