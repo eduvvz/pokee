@@ -69,7 +69,8 @@ export default {
                         }
                     )
                     .finally(() => this.hideLoading());
-            }
+            };
+            this.name = "";
         },
 
         showLoading() {
