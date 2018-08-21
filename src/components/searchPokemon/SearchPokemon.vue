@@ -1,5 +1,5 @@
 <template>
-<transition enter-active-class="fadeInLeft" leave-active-class="fadeOut" :duration="1000">
+<transition enter-active-class="fadeInLeft" leave-active-class="fadeOut">
     <b-container class="animated">
         <hr>
         <b-row>

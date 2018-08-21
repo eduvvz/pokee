@@ -45,6 +45,7 @@ export default {
     border-radius: 30px 30px 30px 30px;
     min-height: 300px;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .panel-title {
