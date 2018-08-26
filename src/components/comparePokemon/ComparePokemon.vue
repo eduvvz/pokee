@@ -34,6 +34,9 @@
         <div v-else>
             <b-row>
                 <b-col class="center-ver-hor" cols="12">
+                    <div class="btn-close" @click="catchPokemons()">
+                        <span>X</span>
+                    </div>
                     <b-button size="lg" variant="danger" @click="comparePokemons()">
                         <img src="../../assets/search.png" alt="search"> Nossa opinião
                     </b-button>
@@ -83,6 +86,11 @@ export default {
     },
 
     methods: {
+        catchPokemons() {
+            this.pokemon1 = null;
+            this.pokemon2 = null;
+        }, 
+        
         searchPokemons() {
             this.service.listForName(this.pokemonName1).then(pokemon => {
                 this.pokemon1 = pokemon
@@ -129,6 +137,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.btn-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
 .input {
     @media screen and (max-width: 768px) {
         font-size: 1em;
